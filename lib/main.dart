@@ -4,13 +4,15 @@ import 'dart:convert';
 import 'package:github_api/models/repo.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return const MaterialApp(
       title: 'Flutter Demo',
       home: Home(),
     );
@@ -18,11 +20,10 @@ class MyApp extends StatelessWidget {
 }
 
 Future<All> fetchRepos() async {
-  final response =
-      await http.get("https://api.github.com/users/freeCodeCamp/repos" as Uri);
+  final response =await http.get(Uri.parse("https://api.github.com/users/freeCodeCamp/repos"));
+
 
   if (response.statusCode == 200) {
-    print(response.body);
     return All.fromJson(json.decode(response.body));
   } else {
     throw Exception('Failed to fetch repos!');
@@ -30,12 +31,15 @@ Future<All> fetchRepos() async {
 }
 
 class Home extends StatefulWidget {
+  const Home({super.key});
+
   @override
+  // ignore: library_private_types_in_public_api
   _HomeState createState() => _HomeState();
 }
 
 class _HomeState extends State<Home> {
-  Future<All> futureRepo;
+  late Future<All> futureRepo;
   @override
   
   void initState() {
@@ -43,13 +47,15 @@ class _HomeState extends State<Home> {
     futureRepo = fetchRepos();
   }
 
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('GitHub API!'),
+        title: const Text('GitHub API!'),
       ),
       body: Padding(
-        padding: EdgeInsets.all(8.0),
+        padding: const EdgeInsets.all(8.0),
+        // ignore: avoid_unnecessary_containers
         child: Container(
           child: FutureBuilder<All>(
             future: futureRepo,
@@ -62,7 +68,7 @@ class _HomeState extends State<Home> {
                       name: snapshot.data!.repos[i].name,
                       description: snapshot.data!.repos[i].description,
                       htmlUrl: snapshot.data!.repos[i].htmlUrl,
-                      stargazersCount: snapshot.data!.repos[i].stargazersCount,
+                      
                     ),
                   );
                 }
@@ -83,14 +89,14 @@ class _HomeState extends State<Home> {
                                   children: [
                                     Text(
                                       r.name,
-                                      style: TextStyle(fontSize: 30.0),
+                                      style: const TextStyle(fontSize: 30.0),
                                     ),
-                                    Text(r.stargazersCount.toString()),
+                                    
                                   ],
                                 ),
                                 Text(
                                   r.description,
-                                  style: TextStyle(fontSize: 23.0),
+                                  style: const TextStyle(fontSize: 23.0),
                                 ),
                                 Text(r.htmlUrl),
                               ],
@@ -101,11 +107,11 @@ class _HomeState extends State<Home> {
                       .toList(),
                 );
               } else if (snapshot.hasError) {
-                return Center(
+                return const Center(
                   child: Text('Error!'),
                 );
               } else {
-                return Center(
+                return const Center(
                   child: CircularProgressIndicator(),
                 );
               }
