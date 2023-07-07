@@ -74,8 +74,7 @@ class _HomeState extends State<Home> {
                   );
                 }
                 return ListView(
-                  children: repos
-                      .map(
+                  children: repos.map(
                         (r) => Card(
                           color: Colors.blue[300],
                           child: Padding(
