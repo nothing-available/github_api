@@ -73,52 +73,61 @@ class _HomeState extends State<Home> {
                     ),
                   );
                 }
-                return ListView(
-                  children: repos.map(
-                        (r) => Card(
-                          color: Colors.blue[300],
-                          child: Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Text(
-                                      r.name ?? '',
-                                      style: const TextStyle(fontSize: 26.0),
-                                    ),
-                                    Text(r.stargazersCount.toString()),
-                                  ],
-                                ),
-                                Text(
-                                  r.description ?? '' ,
-                                  style: const TextStyle(fontSize: 20.0),
-                                ),
-                                Text(r.htmlUrl ?? ''),
-                              ],
-                            ),
+              return ListView(
+                children: repos
+                    .map(
+                      (r) => Card(
+                        color: const Color.fromARGB(255, 38, 55, 69),
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text(
+                                    r.name?? '',
+                                    style: const TextStyle(
+                                        fontSize: 25.0, color: Colors.white),
+                                  ),
+                                  Text(
+                                    r.stargazersCount.toString(),
+                                    style: const TextStyle(color: Colors.white),
+                                  ),
+                                ],
+                              ),
+                              Text(
+                                r.description?? '',
+                                style: const TextStyle(
+                                    fontSize: 20.0, color: Colors.white),
+                              ),
+                              Text(
+                                r.htmlUrl ?? '',
+                                style: const TextStyle(color: Colors.white),
+                              ),
+                            ],
                           ),
                         ),
-                      )
-                      .toList(),
-                );
-              } else if (snapshot.hasError) {
-                return const Center(
-                  child: Text('Error!'),
-                );
-              } else {
-                return const Center(
-                  child: CircularProgressIndicator(),
-                );
-              }
-            },
-          ),
+                      ),
+                    )
+                    .toList(),
+              );
+            } else if (snapshot.hasError) {
+              return const Center(
+                child: Text('Error!'),
+              );
+            } else {
+              return const Center(
+                child: CircularProgressIndicator(),
+              );
+            }
+          },
         ),
       ),
+      )
     );
   }
 }
