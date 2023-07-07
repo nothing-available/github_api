@@ -8,7 +8,7 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  const MyApp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +31,7 @@ Future<All> fetchRepos() async {
 }
 
 class Home extends StatefulWidget {
-  const Home({super.key});
+  const Home({Key? key}) : super(key: key);
 
   @override
   // ignore: library_private_types_in_public_api
@@ -68,6 +68,7 @@ class _HomeState extends State<Home> {
                       name: snapshot.data!.repos[i].name,
                       description: snapshot.data!.repos[i].description,
                       htmlUrl: snapshot.data!.repos[i].htmlUrl,
+                      stargazersCount: snapshot.data!.repos[i].stargazersCount,
                       
                     ),
                   );
@@ -88,17 +89,17 @@ class _HomeState extends State<Home> {
                                       MainAxisAlignment.spaceBetween,
                                   children: [
                                     Text(
-                                      r.name,
+                                      r.name ?? '',
                                       style: const TextStyle(fontSize: 30.0),
                                     ),
-                                    
+                                    Text(r.stargazersCount.toString()),
                                   ],
                                 ),
                                 Text(
-                                  r.description,
+                                  r.description ?? '' ,
                                   style: const TextStyle(fontSize: 23.0),
                                 ),
-                                Text(r.htmlUrl),
+                                Text(r.htmlUrl ?? ''),
                               ],
                             ),
                           ),
