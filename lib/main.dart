@@ -89,14 +89,14 @@ class _HomeState extends State<Home> {
                                   children: [
                                     Text(
                                       r.name ?? '',
-                                      style: const TextStyle(fontSize: 30.0),
+                                      style: const TextStyle(fontSize: 26.0),
                                     ),
                                     Text(r.stargazersCount.toString()),
                                   ],
                                 ),
                                 Text(
                                   r.description ?? '' ,
-                                  style: const TextStyle(fontSize: 23.0),
+                                  style: const TextStyle(fontSize: 20.0),
                                 ),
                                 Text(r.htmlUrl ?? ''),
                               ],
