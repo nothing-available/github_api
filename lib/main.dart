@@ -20,7 +20,7 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-
+// Function to fetch user data from the GitHub API
 Future<User> fetchUser() async {
   final response = await http.get(Uri.parse("https://api.github.com/users/freeCodeCamp"));
 
@@ -49,6 +49,8 @@ class _HomeState extends State<Home> {
     futureUser = fetchUser();
     futureRepos = fetchRepos();
   }
+
+    // Function to fetch repository data from the GitHub API
 
   Future<List<Repo>> fetchRepos() async {
     final response = await http.get(Uri.parse("https://api.github.com/users/freeCodeCamp/repos"));
