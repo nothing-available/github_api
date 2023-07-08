@@ -2,7 +2,6 @@ import 'dart:convert';
 
 import 'package:github_api/models/commits.dart';
 
-
 class Repo {
   String name;
   String description;
