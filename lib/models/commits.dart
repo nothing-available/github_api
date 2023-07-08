@@ -1,20 +1,12 @@
-import 'dart:convert';
+class Commit {
+  final String? message;
 
-class RepoCommit {
-  String sha;
-  String author;
-  String message;
-
-  RepoCommit({
-    required this.sha,
-    required this.author,
-    required this.message,
+  Commit({
+    this.message,
   });
 
-  factory RepoCommit.fromJson(Map<String, dynamic> json) {
-    return RepoCommit(
-      sha: json['sha'],
-      author: json['author']['login'],
+  factory Commit.fromJson(Map<String, dynamic> json) {
+    return Commit(
       message: json['message'],
     );
   }

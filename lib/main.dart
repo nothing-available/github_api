@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:github_api/models/commits.dart';
+import 'package:github_api/models/repo.dart';
+import 'package:github_api/models/user.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
@@ -24,7 +27,7 @@ Future<User> fetchUser() async {
   if (response.statusCode == 200) {
     return User.fromJson(json.decode(response.body));
   } else {
-    throw Exception('Failed to fetch user!');
+     throw Exception('Failed to fetch user!');
   }
 }
 
@@ -178,47 +181,47 @@ class _HomeState extends State<Home> {
   }
 }
 
-class User {
-  final String login;
-  final String name;
+// class User {
+//   final String login;
+//   final String name;
 
-  User({
-    required this.login,
-    required this.name,
-  });
+//   User({
+//     required this.login,
+//     required this.name,
+//   });
 
-  factory User.fromJson(Map<String, dynamic> json) {
-    return User(
-      login: json['login'],
-      name: json['name'],
-    );
-  }
-}
+//   factory User.fromJson(Map<String, dynamic> json) {
+//     return User(
+//       login: json['login'],
+//       name: json['name'],
+//     );
+//   }
+// }
 
-class Repo {
-  final String? name;
-  final String? description;
-  final String? htmlUrl;
-  final int? stargazersCount;
+// class Repo {
+//   final String? name;
+//   final String? description;
+//   final String? htmlUrl;
+//   final int? stargazersCount;
 
-  Repo({
-    this.name,
-    this.description,
-    this.htmlUrl,
-    this.stargazersCount,
-  });
-}
+//   Repo({
+//     this.name,
+//     this.description,
+//     this.htmlUrl,
+//     this.stargazersCount,
+//   });
+// }
 
-class Commit {
-  final String? message;
+// class Commit {
+//   final String? message;
 
-  Commit({
-    this.message,
-  });
+//   Commit({
+//     this.message,
+//   });
 
-  factory Commit.fromJson(Map<String, dynamic> json) {
-    return Commit(
-      message: json['message'],
-    );
-  }
-}
+//   factory Commit.fromJson(Map<String, dynamic> json) {
+//     return Commit(
+//       message: json['message'],
+//     );
+//   }
+// }
